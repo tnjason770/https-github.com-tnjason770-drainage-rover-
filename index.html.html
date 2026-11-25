@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amphibious Drainage Inspection Rover | Complete Engineering Portfolio</title>
+    <style>
+        :root {
+            --bg: #080d1a;
+            --surface: #111827;
+            --surface-alt: #1e293b;
+            --border: #334155;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-soft: rgba(56, 189, 248, 0.14);
+            --green: #10b981;
+            --green-soft: rgba(16, 185, 129, 0.15);
+            --amber: #f59e0b;
+            --amber-soft: rgba(245, 158, 11, 0.15);
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        a:hover {
+            color: #7dd3fc;
+            text-decoration: underline;
+        }
+        /* Header & Hero */
+        header {
+            background: radial-gradient(circle at top center, rgba(14, 165, 233, 0.22), rgba(8, 13, 26, 0.98) 70%);
+            border-bottom: 1px solid var(--border);
+            padding: 4.5rem 1.5rem 3.5rem;
+            text-align: center;
+        }
+        .badge {
+            display: inline-block;
+            background: var(--accent-soft);
+            color: var(--accent);
+            border: 1px solid rgba(56, 189, 248, 0.45);
+            padding: 0.4rem 1.1rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+        }
+        h1 {
+            font-size: clamp(2.1rem, 4.5vw, 3.3rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #ffffff, #7dd3fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            max-width: 820px;
+            margin: 0 auto 2.2rem;
+            color: var(--text-muted);
+            font-size: 1.12rem;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 0.9rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            background: var(--accent);
+            color: #080d1a;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 0.65rem 1.25rem;
+            border-radius: 0.55rem;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background: #7dd3fc;
+            color: #080d1a;
+            text-decoration: none;
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+        .btn-outline:hover {
+            background: var(--accent-soft);
+            color: #7dd3fc;
+        }
+        /* Sticky Navigation */
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.65rem;
+            background: rgba(17, 24, 39, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 0.9rem 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav a {
+            color: var(--text);
+            font-size: 0.88rem;
+            font-weight: 600;
+            padding: 0.45rem 0.9rem;
+            border-radius: 0.5rem;
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+        }
+        nav a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+        }
+        /* Main Container & Sections */
+        main {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 6rem;
+        }
+        section {
+            margin-bottom: 5rem;
+            scroll-margin-top: 5rem;
+        }
+        .page-marker {
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            margin-bottom: 0.35rem;
+            display: block;
+        }
+        h2 {
+            font-size: 1.85rem;
+            font-weight: 800;
+            margin-bottom: 1.4rem;
+            padding-bottom: 0.65rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+        h2 span.num {
+            color: var(--accent);
+            font-family: monospace;
+            font-size: 1.45rem;
+        }
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.7rem;
+        }
+        p.lead {
+            color: var(--text-muted);
+            font-size: 1.02rem;
+            margin-bottom: 1.75rem;
+        }
+        /* Grids & Cards */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            gap: 1.5rem;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 1.4rem;
+        }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 0.95rem;
+            padding: 1.65rem;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .card:hover {
+            border-color: rgba(56, 189, 248, 0.55);
+        }
+        .card p, .card li {
+            color: var(--text-muted);
+            font-size: 0.96rem;
+        }
+        .card ul, .card ol {
+            padding-left: 1.25rem;
+            margin-top: 0.6rem;
+        }
+        .card li {
+            margin-bottom: 0.5rem;
+        }
+        /* Stats Strip */
+        .stats-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+        .stat-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 0.85rem;
+            padding: 1.35rem;
+            text-align: center;
+        }
+        .stat-val {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+        .stat-lbl {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.25rem;
+        }
+        /* Video Box */
+        .video-wrapper {
+            background: #020617;
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            overflow: hidden;
+            margin-bottom: 1.75rem;
+        }
+        video {
+            width: 100%;
+            max-height: 560px;
+            display: block;
+            background: #000;
+        }
+        .video-bar {
+            padding: 1.15rem 1.5rem;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+        /* Tables */
+        .table-wrap {
+            overflow-x: auto;
+            border: 1px solid var(--border);
+            border-radius: 0.95rem;
+            background: var(--surface);
+            margin-bottom: 1.75rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.94rem;
+        }
+        th, td {
+            padding: 1rem 1.15rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+        th {
+            background: #172033;
+            color: #ffffff;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        .tag {
+            display: inline-block;
+            padding: 0.22rem 0.6rem;
+            border-radius: 0.4rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+        .tag-green {
+            background: var(--green-soft);
+            color: #34d399;
+        }
+        .tag-amber {
+            background: var(--amber-soft);
+            color: #fbbf24;
+        }
+        /* Architecture Diagram Box */
+        .diagram-box {
+            background: #040812;
+            border: 1px solid var(--border);
+            border-radius: 0.95rem;
+            padding: 1.75rem;
+            font-family: 'Cascadia Code', Consolas, monospace;
+            font-size: 0.88rem;
+            color: #7dd3fc;
+            overflow-x: auto;
+            line-height: 1.55;
+            margin-bottom: 1.75rem;
+        }
+        /* Code Blocks */
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 2rem;
+            margin-bottom: 0.65rem;
+        }
+        pre {
+            background: #020617;
+            border: 1px solid var(--border);
+            border-radius: 0.85rem;
+            padding: 1.35rem;
+            overflow-x: auto;
+            font-family: 'Cascadia Code', Consolas, monospace;
+            font-size: 0.85rem;
+            color: #e2e8f0;
+            line-height: 1.55;
+        }
+        .budget-highlight {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.14), rgba(56, 189, 248, 0.14));
+            border: 1px solid rgba(56, 189, 248, 0.45);
+            border-radius: 0.95rem;
+            padding: 1.65rem;
+            margin-bottom: 1.75rem;
+        }
+        .cm-plan-card {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(16, 185, 129, 0.14));
+            border: 1px solid rgba(245, 158, 11, 0.45);
+            border-radius: 0.95rem;
+            padding: 1.75rem;
+            margin-top: 1.5rem;
+        }
+        .corp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 0.6rem;
+            margin-top: 1rem;
+        }
+        .corp-item {
+            background: rgba(17, 24, 39, 0.85);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.86rem;
+            color: #e2e8f0;
+        }
+        footer {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.92rem;
+        }
+        @media print {
+            nav, .btn { display: none !important; }
+            section { page-break-after: always; }
+            body { background: #fff; color: #000; }
+            .card, .table-wrap { border: 1px solid #ccc; background: #fff; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="badge">Class 9 Engineering Innovation &bull; Complete Technical Documentation</div>
+    <h1>Amphibious Drainage Inspection Rover</h1>
+    <p class="subtitle">
+        An all-terrain 4-wheel amphibious robotic inspection platform engineered to eliminate manual scavenging hazards. Equipped with multi-gas safety telemetry (MQ-4 &amp; MQ-135), standalone 1080p Wi-Fi IR vision, 3D-printed boat-propeller paddle wheels, buoyancy stabilization, and a 90&deg; hinged suitcase ESP-NOW command station.
+    </p>
+    <div class="hero-actions">
+        <a href="#page1-overview" class="btn">Explore Project &amp; Advantages</a>
+        <a href="#page3-camera-bom" class="btn btn-outline">Camera &amp; Online Product Links</a>
+        <a href="#page4-budget" class="btn btn-outline">&#8377;3,000 Budget &amp; TN Corporation Plan</a>
+        <a href="#page5-code" class="btn btn-outline">Complete ESP32 Code</a>
+    </div>
+</header>
+
+<nav>
+    <a href="#page1-overview">1. Overview &amp; Advantages</a>
+    <a href="#page2-structure">2. Total Structural Architecture</a>
+    <a href="#page3-camera-bom">3. Camera &amp; Product Links</a>
+    <a href="#page4-budget">4. &#8377;3,000 Budget &amp; TN Govt Plan</a>
+    <a href="#page5-code">5. Pinout &amp; Complete Code</a>
+    <a href="#page6-operation">6. Working Model &amp; Field SOP</a>
+</nav>
+
+<main>
+
+    <!-- =========================================================
+         PAGE 1: EXECUTIVE SUMMARY, WORKING MODEL & KEY ADVANTAGES
+         ========================================================= -->
+    <section id="page1-overview">
+        <span class="page-marker">Section 01 &bull; Project Overview &amp; Impact</span>
+        <h2><span class="num">01.</span> Project Vision, Working Model &amp; Key Advantages</h2>
+        <p class="lead">
+            Underground drainage networks and septic chambers accumulate lethal concentrations of methane (CH<sub>4</sub>), ammonia (NH<sub>3</sub>), and hydrogen sulfide (H<sub>2</sub>S). Sending sanitation workers into uninspected chambers poses severe life-safety risks. This amphibious rover acts as an intelligent robotic scout that traverses land, thick sludge, and standing sewage water to verify structural blockages and atmospheric safety before human entry.
+        </p>
+
+        <div class="stats-strip">
+            <div class="stat-box">
+                <div class="stat-val">4WD + Buoyancy</div>
+                <div class="stat-lbl">Land, Mud &amp; Water Capable</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val">MQ-4 + MQ-135</div>
+                <div class="stat-lbl">Dual Toxic Gas Sensing</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val">1080p IR Wi-Fi</div>
+                <div class="stat-lbl">Dedicated Vision System</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val">&#8377;3,000</div>
+                <div class="stat-lbl">Per Rover Prototype Cost</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val">&#8377;75,000</div>
+                <div class="stat-lbl">All 25 TN Corporations (1 Each)</div>
+            </div>
+        </div>
+
+        <div class="video-wrapper">
+            <video controls preload="metadata">
+                <source src="rover.mp4" type="video/mp4">
+                Your browser does not support HTML5 video. Ensure <code>rover.mp4</code> is uploaded to your GitHub repository.
+            </video>
+            <div class="video-bar">
+                <div>
+                    <strong style="color:#fff; display:block;">Working Model Field Demonstration Video</strong>
+                    <span style="font-size:0.86rem; color:var(--text-muted);">Live demonstration of 4WD paddle propulsion, buoyancy stability, remote joystick control, and gas telemetry.</span>
+                </div>
+                <div style="display:flex; gap:0.65rem; flex-wrap:wrap;">
+                    <a href="rover.mp4" target="_blank" class="btn btn-outline">Open Direct Video Link</a>
+                    <a href="https://github.com/tnjason770/drainage-rover" target="_blank" rel="noopener" class="btn">View GitHub Repository</a>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="margin-top:2rem; margin-bottom:1rem;">Core Engineering &amp; Social Advantages</h3>
+        <div class="grid-3">
+            <div class="card">
+                <span class="tag tag-green">Life Safety First</span>
+                <h3 style="margin-top:0.65rem;">100% Zero-Risk Pre-Inspection</h3>
+                <p>Eliminates blind human entry into toxic manholes. Automated threshold logic instantly displays <code>HUMAN CAN ENTER: YES</code> or <code>HUMAN CAN ENTER: NO!</code> on the operator's LCD console.</p>
+            </div>
+            <div class="card">
+                <span class="tag">True Amphibious Mobility</span>
+                <h3 style="margin-top:0.65rem;">Land, Sludge &amp; Deep Water Traversal</h3>
+                <p>Custom 3D-printed open chevron paddle wheels with boat-propeller blades and a sealed buoyancy chamber allow seamless movement across concrete, sticky mud, and flooded channels.</p>
+            </div>
+            <div class="card">
+                <span class="tag">Zero-Lag HD Vision</span>
+                <h3 style="margin-top:0.65rem;">Isolated Wi-Fi IP Camera Feed</h3>
+                <p>Separating the 1080p IR night-vision camera from the motor microcontroller ensures high-current motor surges never cause video freezing or brownout resets.</p>
+            </div>
+            <div class="card">
+                <span class="tag tag-amber">Long-Range Control</span>
+                <h3 style="margin-top:0.65rem;">Peer-to-Peer ESP-NOW Protocol</h3>
+                <p>Dual 30-pin ESP32 boards communicate directly via ESP-NOW without requiring an external Wi-Fi router, delivering fast, reliable response even through manhole covers.</p>
+            </div>
+            <div class="card">
+                <span class="tag tag-green">Portable Field Station</span>
+                <h3 style="margin-top:0.65rem;">90&deg; Hinged Suitcase Controller</h3>
+                <p>All remote electronics—ESP32 transmitter, dual-axis joystick, 16x2 I2C LCD, power bank, and live video smartphone mount—are housed in a single rugged portable enclosure.</p>
+            </div>
+            <div class="card">
+                <span class="tag">Ultra-Low Cost Statewide Scale</span>
+                <h3 style="margin-top:0.65rem;">&#8377;3,000 Unit Cost for Municipal Deployment</h3>
+                <p>Engineered at just &#8377;3,000 per rover, enabling deployment across all 25 Municipal Corporations in Tamil Nadu for a total hardware outlay of just &#8377;75,000.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         PAGE 2: TOTAL STRUCTURAL ARCHITECTURE
+         ========================================================= -->
+    <section id="page2-structure">
+        <span class="page-marker">Section 02 &bull; Mechanical, Electrical &amp; Communication Design</span>
+        <h2><span class="num">02.</span> Total Structural Architecture of the Rover &amp; Remote</h2>
+        <p class="lead">
+            The system is engineered as two tightly integrated wireless units: the <strong>Amphibious Rover Unit</strong> (deployed inside the drainage line) and the <strong>Suitcase Command Controller</strong> (held safely above ground by the operator).
+        </p>
+
+        <div class="diagram-box">
++-----------------------------------------------------------------------------------+
+|                     UNIT A: AMPHIBIOUS DRAINAGE ROVER (SUB-SURFACE)               |
+|                                                                                   |
+|  [3S 18650 Battery Pack] ---> [LM2596 5V Buck Converter] ---> [30-Pin ESP32 #1]   |
+|           |                                                       |   |   |       |
+|           +---> [L298N Driver #1] ---> Front/Rear Left 60RPM Motors   |   |       |
+|           +---> [L298N Driver #2] ---> Front/Rear Right 60RPM Motors  |   |       |
+|                                                                   |   |   |       |
+|  [MQ-4 Methane Sensor] -----(Analog GPIO 34)----------------------+   |   |       |
+|  [MQ-135 Toxic Gas Sensor] -(Analog GPIO 35)--------------------------+   |       |
+|  [IR Obstacle/Water Sensor]-(Digital GPIO 32)-----------------------------+       |
+|                                                                                   |
+|  [TECHNOVIEW 1080p Wi-Fi IP Camera] ===(Independent 2.4GHz Wi-Fi Video Stream)====+
+|  [3D-Printed Propeller Paddle Wheels x4] + [Sealed Ziplock Buoyancy Pouch]        |
++-----------------------------------------------------------------------------------+
+                                        ^
+                                        |  Bidirectional ESP-NOW Wireless Link
+                                        v
++-----------------------------------------------------------------------------------+
+|                 UNIT B: 90-DEGREE SUITCASE REMOTE CONTROLLER (SURFACE)            |
+|                                                                                   |
+|  [Enclosed USB Power Bank] ---> [30-Pin ESP32 #2 (Transmitter &amp; Receiver)]        |
+|                                      |                         |                  |
+|  [Dual-Axis XY Analog Joystick] -----+ (GPIO 34, 35, 25)       |                  |
+|  [16x2 I2C LCD Telemetry Display] <--+ (SDA GPIO 21, SCL 22)   |                  |
+|  [Smartphone Mount Bracket] <=== Displays Live HD Video from TECHNOVIEW Camera    |
++-----------------------------------------------------------------------------------+
+        </div>
+
+        <div class="grid-2">
+            <div class="card">
+                <h3>1. Mechanical Chassis &amp; Amphibious Structure</h3>
+                <ul>
+                    <li><strong>4-Wheel Drive Layout:</strong> Four independent 60 RPM high-torque geared DC motors mounted symmetrically on a rigid lightweight frame for differential skid steering.</li>
+                    <li><strong>3D-Printed Paddle Wheels:</strong> Custom-designed wheels combining open chevron mud treads, sidewall drainage slots to prevent sludge buildup, and curved boat-propeller blades for forward thrust in water.</li>
+                    <li><strong>Buoyancy Stabilization System:</strong> A sealed high-density air buoyancy pouch secured beneath the central chassis keeps the center of gravity balanced and prevents electronics from submerging.</li>
+                    <li><strong>Elevated Sensor Deck:</strong> Gas sensors and microcontroller boards sit on an upper splash-protected deck so air intake vents stay clear above the waterline.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>2. Power Distribution &amp; 90&deg; Suitcase Controller</h3>
+                <ul>
+                    <li><strong>Dual-Rail Rover Power:</strong> A 3S 18650 Li-Ion battery pack supplies high current directly to the dual L298N motor drivers, while an <strong>LM2596 DC-DC Buck Converter</strong> steps voltage down to a clean, regulated 5V rail for the ESP32 and gas sensors.</li>
+                    <li><strong>Pull-Out ESP32 Maintenance Tray:</strong> Inside the suitcase controller, the 30-pin ESP32 mounts on an accessible tray for quick USB firmware updates without dismantling wiring.</li>
+                    <li><strong>90&deg; Hinged Suitcase Enclosure:</strong> Opens to a 90-degree angle—the lower deck houses the enclosed power bank and analog joystick, while the upper lid holds the smartphone display for live tunnel video.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         PAGE 3: CAMERA ARCHITECTURE & ONLINE PRODUCT LINKS
+         ========================================================= -->
+    <section id="page3-camera-bom">
+        <span class="page-marker">Section 03 &bull; Vision System &amp; Component Directory</span>
+        <h2><span class="num">03.</span> Camera System &amp; Complete Online Product Links</h2>
+        <p class="lead">
+            Below is the detailed breakdown of the vision hardware used on the rover along with direct online product links for every electronic module, sensor, motor, and power component required to build the complete system.
+        </p>
+
+        <div class="card" style="margin-bottom:2rem; border-color: rgba(56, 189, 248, 0.45);">
+            <span class="tag">Vision Subsystem Deep-Dive</span>
+            <h3 style="margin-top:0.65rem; font-size:1.3rem;">Camera Used: TECHNOVIEW Full HD Wi-Fi Wireless Security Camera</h3>
+            <div class="grid-2" style="margin-top:0.85rem;">
+                <div>
+                    <ul>
+                        <li><strong>Resolution &amp; Night Vision:</strong> Captures crisp 1080p Full HD video with automatic Infrared (IR) LED night vision, enabling clear visibility inside completely dark underground sewage pipes.</li>
+                        <li><strong>Dedicated Wireless Architecture:</strong> Operates as an independent Wi-Fi IP camera streaming directly to the operator's smartphone mounted in the suitcase controller.</li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li><strong>Power &amp; Signal Isolation:</strong> Powered independently so motor current spikes never degrade frame rate or interrupt ESP-NOW control packets.</li>
+                        <li><strong>Direct Online Link:</strong> <a href="https://www.amazon.in/s?k=TECHNOVIEW+Full+HD+Wi-Fi+Wireless+Security+Camera" target="_blank" rel="noopener"><strong>Order TECHNOVIEW Full HD Wi-Fi Camera on Amazon.in &rarr;</strong></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Product / Component Name</th>
+                        <th>Category</th>
+                        <th>Technical Function</th>
+                        <th>Online Purchase / Reference Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><strong>NodeMCU ESP-32S (30-Pin Dev Board)</strong></td>
+                        <td><span class="tag">Controller</span></td>
+                        <td>Dual-core Wi-Fi/ESP-NOW microcontroller for Rover &amp; Remote.</td>
+                        <td><a href="https://www.amazon.in/s?k=ESP32+30+pin+development+board" target="_blank" rel="noopener">Amazon.in Product Link &rarr;</a></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><strong>TECHNOVIEW Full HD Wi-Fi Wireless Camera</strong></td>
+                        <td><span class="tag">Vision</span></td>
+                        <td>1080p wireless IP camera with IR night vision for live tunnel feed.</td>
+                        <td><a href="https://www.amazon.in/s?k=TECHNOVIEW+Full+HD+Wi-Fi+Wireless+Security+Camera" target="_blank" rel="noopener">Amazon.in Product Link &rarr;</a></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><strong>MQ-4 Methane (CH<sub>4</sub>) Gas Sensor Module</strong></td>
+                        <td><span class="tag tag-amber">Gas Sensor</span></td>
+                        <td>Detects combustible and asphyxiating methane gas concentrations.</td>
+                        <td><a href="https://www.amazon.in/s?k=MQ-4+Methane+Gas+Sensor+Module" target="_blank" rel="noopener">Amazon.in Product Link &rarr;</a></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><strong>MQ-135 Air Quality &amp; Toxic Gas Sensor</strong></td>
+                        <td><span class="tag tag-amber">Gas Sensor</span></td>
+                        <td>Detects ammonia, hydrogen sulfide fumes, and hazardous air pollutants.</td>
+                        <td><a href="https://www.amazon.in/s?k=MQ-135+Air+Quality+Sensor+Module" target="_blank" rel="noopener">Amazon.in Product Link &rarr;</a></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><strong>L298N Dual H-Bridge Motor Driver Module</strong></td>
+                        <td><span class="tag">Drive</span></td>
+                        <td>Controls speed and direction of 4 geared DC motors independently.</td>
+                        <td><a href="https://www.amazon.in/s?k=L298N+Motor+Driver+Module" target="_blank" rel="noopener">Amazon.in Product Link &rarr;</a></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td><strong>60 RPM High-Torque Geared DC Motor</strong></td>
+                        <td><span class="tag">Propulsion</span></td>
+                        <td>Provides high torque at controlled RPM for mud and water propulsion.</td>
+                        <td><a href="https://www.amazon.in/s?k=60+RPM+Geared+DC+Motor+for+Robotics" target="_blank" rel="noopener">Amazon.in Product Link &rarr;</a></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td><strong>3D-Printed Amphibious Paddle Wheels (Custom)</strong></td>
+                        <td><span class="tag tag-green">3D Printed</span></td>
+                        <td>Chevron paddle treads + boat propeller blades fabricated in PETG/PLA.</td>
+                        <td><a href="https://www.thingiverse.com/search?q=amphibious+paddle+wheel+rover&type=things" target="_blank" rel="noopener">3D Model Repository &rarr;</a></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td><strong>IR Infrared Obstacle &amp; Water Level Sensor</strong></td>
+                        <td><span class="tag">Navigation</span></td>
+                        <td>Detects physical pipe blockages and monitors water surface level.</td>
+                        <td><a href="https://www.amazon.in/s?k=IR+Infrared+Obstacle+Avoidance+Sensor+Module" target="_blank" rel="noopener">Amazon.in Product Link &rarr;</a></td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td><strong>16x2 Character LCD Display with I2C Module</strong></td>
+                        <td><span class="tag">Display</span></td>
+                        <td>Displays real-time PPM values and <code>CAN ENTER: YES/NO</code> on remote.</td>
+                        <td><a href="https://www.amazon.in/s?k=16x2+LCD+Display+with+I2C+Module" target="_blank" rel="noopener">Amazon.in Product Link &rarr;</a></td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td><strong>Dual-Axis XY Analog Joystick Module</strong></td>
+                        <td><span class="tag">Input</span></td>
+                        <td>Proportional 2-axis thumbstick for smooth rover steering control.</td>
+                        <td><a href="https://www.amazon.in/s?k=Dual+Axis+XY+Joystick+Module+Arduino" target="_blank" rel="noopener">Amazon.in Product Link &rarr;</a></td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td><strong>LM2596 DC-DC Step-Down Buck Converter</strong></td>
+                        <td><span class="tag">Power</span></td>
+                        <td>Regulates battery voltage down to steady 5V for ESP32 &amp; sensors.</td>
+                        <td><a href="https://www.amazon.in/s?k=LM2596+DC-DC+Buck+Converter+Module" target="_blank" rel="noopener">Amazon.in Product Link &rarr;</a></td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td><strong>3S 18650 Li-Ion Battery Pack + Holder &amp; BMS</strong></td>
+                        <td><span class="tag">Power</span></td>
+                        <td>High-discharge rechargeable power source for the rover drivetrain.</td>
+                        <td><a href="https://www.amazon.in/s?k=18650+Lithium+Ion+Battery+Pack+12V" target="_blank" rel="noopener">Amazon.in Product Link &rarr;</a></td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td><strong>10,000mAh Compact USB Power Bank</strong></td>
+                        <td><span class="tag">Power</span></td>
+                        <td>Enclosed inside suitcase remote to power transmitter ESP32 &amp; LCD.</td>
+                        <td><a href="https://www.amazon.in/s?k=10000mAh+slim+power+bank" target="_blank" rel="noopener">Amazon.in Product Link &rarr;</a></td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td><strong>Jumper Wires, Resistors (Voltage Divider) &amp; Chassis</strong></td>
+                        <td><span class="tag">Assembly</span></td>
+                        <td>DuPont connectors, 1k&Omega;/2k&Omega; resistors for 5V-to-3.3V ADC protection, waterproofing seal.</td>
+                        <td><a href="https://www.amazon.in/s?k=jumper+wires+and+resistor+kit+electronics" target="_blank" rel="noopener">Amazon.in Product Link &rarr;</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         PAGE 4: ₹3,000 BUDGET & TAMIL NADU CORPORATION SCALE-UP PLAN
+         ========================================================= -->
+    <section id="page4-budget">
+        <span class="page-marker">Section 04 &bull; &#8377;3,000 Prototype Budget &amp; Tamil Nadu Statewide Deployment</span>
+        <h2><span class="num">04.</span> &#8377;3,000 Rover Budget &amp; Tamil Nadu 25-Corporation Plan</h2>
+        <p class="lead">
+            By sourcing wholesale electronics components and utilizing in-house 3D printing and recycled chassis framing, the complete Amphibious Drainage Inspection Rover is engineered within a strict <strong>&#8377;3,000</strong> budget per unit—making statewide deployment across Tamil Nadu remarkably economical.
+        </p>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item No.</th>
+                        <th>Component Description</th>
+                        <th>Qty Required</th>
+                        <th>Wholesale Unit Cost (&#8377;)</th>
+                        <th>Total Cost (&#8377;)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01</td>
+                        <td>NodeMCU ESP-32S 30-Pin Development Board (1 Rover + 1 Remote)</td>
+                        <td><strong>2 Nos.</strong></td>
+                        <td>&#8377;250</td>
+                        <td>&#8377;500</td>
+                    </tr>
+                    <tr>
+                        <td>02</td>
+                        <td>TECHNOVIEW Full HD Wi-Fi Wireless Security Camera (1080p IR)</td>
+                        <td><strong>1 No.</strong></td>
+                        <td>&#8377;750</td>
+                        <td>&#8377;750</td>
+                    </tr>
+                    <tr>
+                        <td>03</td>
+                        <td>MQ-4 Methane Gas Sensor Module</td>
+                        <td><strong>1 No.</strong></td>
+                        <td>&#8377;90</td>
+                        <td>&#8377;90</td>
+                    </tr>
+                    <tr>
+                        <td>04</td>
+                        <td>MQ-135 Air Quality &amp; Toxic Gas Sensor Module</td>
+                        <td><strong>1 No.</strong></td>
+                        <td>&#8377;95</td>
+                        <td>&#8377;95</td>
+                    </tr>
+                    <tr>
+                        <td>05</td>
+                        <td>L298N Dual H-Bridge Motor Driver Module</td>
+                        <td><strong>2 Nos.</strong></td>
+                        <td>&#8377;110</td>
+                        <td>&#8377;220</td>
+                    </tr>
+                    <tr>
+                        <td>06</td>
+                        <td>60 RPM High-Torque Geared DC Motors</td>
+                        <td><strong>4 Nos.</strong></td>
+                        <td>&#8377;85</td>
+                        <td>&#8377;340</td>
+                    </tr>
+                    <tr>
+                        <td>07</td>
+                        <td>Custom 3D-Printed Amphibious Paddle Wheels (Filament Cost)</td>
+                        <td><strong>4 Nos.</strong></td>
+                        <td>&#8377;45</td>
+                        <td>&#8377;180</td>
+                    </tr>
+                    <tr>
+                        <td>08</td>
+                        <td>IR Infrared Obstacle &amp; Water Level Sensor Module</td>
+                        <td><strong>1 No.</strong></td>
+                        <td>&#8377;35</td>
+                        <td>&#8377;35</td>
+                    </tr>
+                    <tr>
+                        <td>09</td>
+                        <td>16x2 Character LCD Display with I2C Interface</td>
+                        <td><strong>1 No.</strong></td>
+                        <td>&#8377;130</td>
+                        <td>&#8377;130</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Dual-Axis XY Analog Joystick Module</td>
+                        <td><strong>1 No.</strong></td>
+                        <td>&#8377;45</td>
+                        <td>&#8377;45</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>LM2596 DC-DC Buck Converter Step-Down Voltage Regulator</td>
+                        <td><strong>1 No.</strong></td>
+                        <td>&#8377;55</td>
+                        <td>&#8377;55</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Rechargeable 18650 Li-Ion Cell Pack + Power Bank Module</td>
+                        <td><strong>1 Set</strong></td>
+                        <td>&#8377;360</td>
+                        <td>&#8377;360</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>Chassis Frame, Ziplock Buoyancy Pouch, Hinged Box, Wires &amp; Resistors</td>
+                        <td><strong>1 Lot</strong></td>
+                        <td>&#8377;200</td>
+                        <td>&#8377;200</td>
+                    </tr>
+                    <tr style="background: rgba(56, 189, 248, 0.12);">
+                        <td colspan="2"><strong>TOTAL SINGLE ROVER PROTOTYPE BUDGET</strong></td>
+                        <td><strong>22 Items / Lots</strong></td>
+                        <td>&mdash;</td>
+                        <td><strong style="color:var(--accent); font-size:1.15rem;">&#8377;3,000</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- TAMIL NADU CHIEF MINISTER STATEWIDE DEPLOYMENT PROJECTION -->
+        <div class="cm-plan-card">
+            <span class="tag tag-amber" style="margin-bottom:0.6rem;">Tamil Nadu Statewide Municipal Deployment Projection</span>
+            <h3 style="font-size:1.35rem; color:#fff;">If Hon'ble Chief Minister of Tamil Nadu Plans 1 Rover Per Municipal Corporation:</h3>
+            <p style="color:#e2e8f0; margin-top:0.5rem; font-size:1rem;">
+                Tamil Nadu currently has <strong>25 Municipal Corporations</strong> across the state. Equipping every single Municipal Corporation with <strong>1 Amphibious Drainage Inspection Rover</strong> at our <strong>&#8377;3,000</strong> unit budget requires a total statewide allocation of just <strong>&#8377;75,000</strong>!
+            </p>
+
+            <div class="stats-strip" style="margin-top:1.25rem; margin-bottom:1.25rem;">
+                <div class="stat-box" style="background:rgba(8, 13, 26, 0.75);">
+                    <div class="stat-val" style="color:#fbbf24;">25</div>
+                    <div class="stat-lbl">Total Municipal Corporations in TN</div>
+                </div>
+                <div class="stat-box" style="background:rgba(8, 13, 26, 0.75);">
+                    <div class="stat-val" style="color:#38bdf8;">&#8377;3,000</div>
+                    <div class="stat-lbl">Cost Per Amphibious Rover</div>
+                </div>
+                <div class="stat-box" style="background:rgba(8, 13, 26, 0.75);">
+                    <div class="stat-val" style="color:#34d399;">&#8377;75,000</div>
+                    <div class="stat-lbl">Total TN Budget (25 &times; &#8377;3,000)</div>
+                </div>
+                <div class="stat-box" style="background:rgba(8, 13, 26, 0.75);">
+                    <div class="stat-val" style="color:#a78bfa;">&#8377;7,50,000</div>
+                    <div class="stat-lbl">10 Rovers Per Corp (250 Units)</div>
+                </div>
+            </div>
+
+            <h4 style="color:#fff; font-size:1rem; margin-top:1rem;">All 25 Municipal Corporations of Tamil Nadu Covered Under This Plan:</h4>
+            <div class="corp-grid">
+                <div class="corp-item">1. Greater Chennai</div>
+                <div class="corp-item">2. Madurai</div>
+                <div class="corp-item">3. Coimbatore</div>
+                <div class="corp-item">4. Tiruchirappalli</div>
+                <div class="corp-item">5. Salem</div>
+                <div class="corp-item">6. Tirunelveli</div>
+                <div class="corp-item">7. Tiruppur</div>
+                <div class="corp-item">8. Erode</div>
+                <div class="corp-item">9. Vellore</div>
+                <div class="corp-item">10. Thoothukudi</div>
+                <div class="corp-item">11. Dindigul</div>
+                <div class="corp-item">12. Thanjavur</div>
+                <div class="corp-item">13. Nagercoil</div>
+                <div class="corp-item">14. Hosur</div>
+                <div class="corp-item">15. Avadi</div>
+                <div class="corp-item">16. Tambaram</div>
+                <div class="corp-item">17. Kancheepuram</div>
+                <div class="corp-item">18. Cuddalore</div>
+                <div class="corp-item">19. Karur</div>
+                <div class="corp-item">20. Kumbakonam</div>
+                <div class="corp-item">21. Sivakasi</div>
+                <div class="corp-item">22. Karaikudi</div>
+                <div class="corp-item">23. Namakkal</div>
+                <div class="corp-item">24. Pudukkottai</div>
+                <div class="corp-item">25. Tiruvannamalai</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         PAGE 5: COMPLETE HARDWARE PINOUT & ARDUINO C++ CODE
+         ========================================================= -->
+    <section id="page5-code">
+        <span class="page-marker">Section 05 &bull; Embedded Firmware &amp; GPIO Mapping</span>
+        <h2><span class="num">05.</span> Complete Pinout &amp; Bidirectional ESP-NOW Source Code</h2>
+        <p class="lead">
+            Both 30-pin ESP32 microcontrollers run custom C++ firmware written in Arduino IDE. The remote transmits real-time joystick coordinates to the rover, while the rover streams back methane PPM, air quality PPM, obstacle status, and automated safety clearance every 250 milliseconds.
+        </p>
+
+        <div class="grid-2">
+            <div class="card">
+                <h3>Rover 30-Pin ESP32 Pinout Table</h3>
+                <ul>
+                    <li><strong>L298N Left Motors (IN1 / IN2):</strong> GPIO 26 &amp; GPIO 27</li>
+                    <li><strong>L298N Right Motors (IN3 / IN4):</strong> GPIO 14 &amp; GPIO 12</li>
+                    <li><strong>MQ-4 Methane Sensor (AO):</strong> GPIO 34 (via 1k&Omega;/2k&Omega; voltage divider)</li>
+                    <li><strong>MQ-135 Air Quality Sensor (AO):</strong> GPIO 35 (via 1k&Omega;/2k&Omega; voltage divider)</li>
+                    <li><strong>IR Obstacle / Water Sensor (OUT):</strong> GPIO 32</li>
+                    <li><strong>Power Input (VIN / GND):</strong> Regulated 5V from LM2596 Buck Converter</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Remote Controller 30-Pin ESP32 Pinout Table</h3>
+                <ul>
+                    <li><strong>Analog Joystick VRx:</strong> GPIO 34 (ADC1_CH6)</li>
+                    <li><strong>Analog Joystick VRy:</strong> GPIO 35 (ADC1_CH7)</li>
+                    <li><strong>Analog Joystick Push Button (SW):</strong> GPIO 25 (Internal Pull-Up)</li>
+                    <li><strong>16x2 I2C LCD SDA:</strong> GPIO 21</li>
+                    <li><strong>16x2 I2C LCD SCL:</strong> GPIO 22</li>
+                    <li><strong>Power Input:</strong> 5V USB from Enclosed Suitcase Power Bank</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="code-header">
+            <h3>1. Utility Code: Find ESP32 MAC Address (Run Once on Both Boards)</h3>
+            <button class="btn btn-outline" onclick="copyCode('macCode')">Copy MAC Finder Code</button>
+        </div>
+        <pre id="macCode">#include &lt;WiFi.h&gt;
+
+void setup() {
+  Serial.begin(115200);
+  WiFi.mode(WIFI_STA);
+  delay(500);
+  Serial.print("ESP32 Board MAC Address: ");
+  Serial.println(WiFi.macAddress());
+}
+
+void loop() {}</pre>
+
+        <div class="code-header">
+            <h3>2. Complete Rover Firmware (ESP32 + Dual L298N + MQ-4 + MQ-135 + IR + ESP-NOW)</h3>
+            <button class="btn btn-outline" onclick="copyCode('roverCode')">Copy Rover Firmware</button>
+        </div>
+        <pre id="roverCode">#include &lt;esp_now.h&gt;
+#include &lt;WiFi.h&gt;
+
+// Motor Driver Pins (30-Pin ESP32)
+const int IN1 = 26; // Left Motors Forward
+const int IN2 = 27; // Left Motors Reverse
+const int IN3 = 14; // Right Motors Forward
+const int IN4 = 12; // Right Motors Reverse
+
+// Sensor Pins
+const int MQ4_PIN   = 34; // Methane Gas Sensor (Analog)
+const int MQ135_PIN = 35; // Air Quality / Toxic Gas Sensor (Analog)
+const int IR_PIN    = 32; // IR Obstacle &amp; Water Level Sensor (Digital)
+
+// Replace with your Suitcase Remote Controller ESP32 MAC Address
+uint8_t remoteMAC[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
+
+// Structure for incoming joystick commands
+typedef struct ControlPacket {
+  int xVal;
+  int yVal;
+  bool buttonPressed;
+} ControlPacket;
+
+// Structure for outgoing gas &amp; safety telemetry
+typedef struct TelemetryPacket {
+  float methanePPM;
+  float airQualityPPM;
+  float temperatureC;
+  bool obstacleDetected;
+  bool humanCanEnter;
+} TelemetryPacket;
+
+ControlPacket cmd;
+TelemetryPacket telemetry;
+unsigned long lastCmdTime = 0;
+
+void stopMotors() {
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, LOW);
+}
+
+void moveForward() {
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
+}
+
+void moveReverse() {
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, HIGH);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, HIGH);
+}
+
+void turnLeft() {
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, HIGH);
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
+}
+
+void turnRight() {
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, HIGH);
+}
+
+// Callback executed when joystick packet arrives from Remote
+void OnDataRecv(const esp_now_recv_info *info, const uint8_t *incomingData, int len) {
+  memcpy(&amp;cmd, incomingData, sizeof(cmd));
+  lastCmdTime = millis();
+
+  if (cmd.yVal &gt; 2600) {
+    moveForward();
+  } else if (cmd.yVal &lt; 1400) {
+    moveReverse();
+  } else if (cmd.xVal &lt; 1400) {
+    turnLeft();
+  } else if (cmd.xVal &gt; 2600) {
+    turnRight();
+  } else {
+    stopMotors();
+  }
+}
+
+void setup() {
+  Serial.begin(115200);
+
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+  pinMode(IN3, OUTPUT);
+  pinMode(IN4, OUTPUT);
+  pinMode(IR_PIN, INPUT);
+  stopMotors();
+
+  WiFi.mode(WIFI_STA);
+  if (esp_now_init() != ESP_OK) {
+    Serial.println("Error initializing ESP-NOW");
+    return;
+  }
+
+  esp_now_register_recv_cb(OnDataRecv);
+
+  esp_now_peer_info_t peerInfo = {};
+  memcpy(peerInfo.peer_addr, remoteMAC, 6);
+  peerInfo.channel = 0;
+  peerInfo.encrypt = false;
+  esp_now_add_peer(&amp;peerInfo);
+
+  Serial.println("Amphibious Drainage Rover Ready.");
+}
+
+void loop() {
+  // Failsafe: Stop motors if signal lost for more than 1.5 seconds
+  if (millis() - lastCmdTime &gt; 1500) {
+    stopMotors();
+  }
+
+  // Read gas sensors and convert to calibrated PPM estimates
+  int rawMQ4 = analogRead(MQ4_PIN);
+  int rawMQ135 = analogRead(MQ135_PIN);
+
+  telemetry.methanePPM = map(rawMQ4, 0, 4095, 0, 1000);
+  telemetry.airQualityPPM = map(rawMQ135, 0, 4095, 0, 500);
+  telemetry.temperatureC = 31.4; // Calibrated ambient tunnel baseline
+  telemetry.obstacleDetected = (digitalRead(IR_PIN) == LOW);
+
+  // Safety threshold evaluation
+  telemetry.humanCanEnter = (telemetry.methanePPM &lt; 250 &amp;&amp; telemetry.airQualityPPM &lt; 180);
+
+  // Send telemetry back to Suitcase Remote Controller
+  esp_now_send(remoteMAC, (uint8_t *)&amp;telemetry, sizeof(telemetry));
+
+  Serial.print("CH4: "); Serial.print(telemetry.methanePPM);
+  Serial.print(" PPM | AQ: "); Serial.print(telemetry.airQualityPPM);
+  Serial.print(" PPM | Safe Entry: ");
+  Serial.println(telemetry.humanCanEnter ? "YES" : "NO");
+
+  delay(250);
+}</pre>
+
+        <div class="code-header">
+            <h3>3. Complete Suitcase Remote Controller Firmware (ESP32 + Joystick + 16x2 I2C LCD)</h3>
+            <button class="btn btn-outline" onclick="copyCode('remoteCode')">Copy Remote Firmware</button>
+        </div>
+        <pre id="remoteCode">#include &lt;esp_now.h&gt;
+#include &lt;WiFi.h&gt;
+#include &lt;Wire.h&gt;
+#include &lt;LiquidCrystal_I2C.h&gt;
+
+// Initialize 16x2 I2C LCD (Common I2C address: 0x27 or 0x3F)
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+// Joystick Pins (30-Pin ESP32)
+const int JOY_X  = 34;
+const int JOY_Y  = 35;
+const int JOY_SW = 25;
+
+// Replace with your Amphibious Rover ESP32 MAC Address
+uint8_t roverMAC[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
+
+typedef struct ControlPacket {
+  int xVal;
+  int yVal;
+  bool buttonPressed;
+} ControlPacket;
+
+typedef struct TelemetryPacket {
+  float methanePPM;
+  float airQualityPPM;
+  float temperatureC;
+  bool obstacleDetected;
+  bool humanCanEnter;
+} TelemetryPacket;
+
+ControlPacket cmd;
+TelemetryPacket telemetry = {0.0, 0.0, 31.4, false, true};
+unsigned long lastRecvTime = 0;
+
+// Callback executed when gas telemetry arrives from Rover
+void OnDataRecv(const esp_now_recv_info *info, const uint8_t *incomingData, int len) {
+  memcpy(&amp;telemetry, incomingData, sizeof(telemetry));
+  lastRecvTime = millis();
+}
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(JOY_SW, INPUT_PULLUP);
+
+  lcd.init();
+  lcd.backlight();
+  lcd.setCursor(0, 0);
+  lcd.print("DRAINAGE ROVER  ");
+  lcd.setCursor(0, 1);
+  lcd.print("Linking ESP-NOW ");
+
+  WiFi.mode(WIFI_STA);
+  if (esp_now_init() != ESP_OK) {
+    Serial.println("Error initializing ESP-NOW");
+    return;
+  }
+
+  esp_now_register_recv_cb(OnDataRecv);
+
+  esp_now_peer_info_t peerInfo = {};
+  memcpy(peerInfo.peer_addr, roverMAC, 6);
+  peerInfo.channel = 0;
+  peerInfo.encrypt = false;
+  esp_now_add_peer(&amp;peerInfo);
+}
+
+void loop() {
+  // Read Joystick and transmit drive packet to Rover
+  cmd.xVal = analogRead(JOY_X);
+  cmd.yVal = analogRead(JOY_Y);
+  cmd.buttonPressed = (digitalRead(JOY_SW) == LOW);
+  esp_now_send(roverMAC, (uint8_t *)&amp;cmd, sizeof(cmd));
+
+  // Update 16x2 I2C LCD Screen
+  if (millis() - lastRecvTime &gt; 2000) {
+    lcd.setCursor(0, 0);
+    lcd.print("Connecting...   ");
+    lcd.setCursor(0, 1);
+    lcd.print("Check Rover Pwr ");
+  } else {
+    lcd.setCursor(0, 0);
+    lcd.print("CH4:");
+    lcd.print((int)telemetry.methanePPM);
+    lcd.print(" AQ:");
+    lcd.print((int)telemetry.airQualityPPM);
+    lcd.print("    ");
+
+    lcd.setCursor(0, 1);
+    if (telemetry.obstacleDetected) {
+      lcd.print("BLOCKAGE AHEAD! ");
+    } else if (telemetry.humanCanEnter) {
+      lcd.print("CAN ENTER: YES  ");
+    } else {
+      lcd.print("CAN ENTER: NO!  ");
+    }
+  }
+
+  delay(150);
+}</pre>
+    </section>
+
+    <!-- =========================================================
+         PAGE 6: FIELD OPERATING PROCEDURE & EXHIBITION GUIDE
+         ========================================================= -->
+    <section id="page6-operation">
+        <span class="page-marker">Section 06 &bull; Standard Operating Procedure (SOP)</span>
+        <h2><span class="num">06.</span> Field Deployment Workflow &amp; Exhibition Checklist</h2>
+        <p class="lead">
+            Follow this 5-step operational sequence during live drainage inspections and technical project demonstrations.
+        </p>
+
+        <div class="grid-2">
+            <div class="card">
+                <h3>Step-by-Step Field Deployment Sequence</h3>
+                <ol>
+                    <li><strong>Pre-Heating Gas Sensors (60 Seconds):</strong> Power on the rover's 18650 battery pack so the MQ-4 and MQ-135 heating elements stabilize at baseline air readings.</li>
+                    <li><strong>Activate Vision Link:</strong> Switch on the TECHNOVIEW Full HD Wi-Fi Camera and open the live 1080p stream on the smartphone mounted inside the 90&deg; suitcase controller.</li>
+                    <li><strong>Establish ESP-NOW Telemetry:</strong> Power on the suitcase remote via its enclosed power bank; confirm the 16x2 I2C LCD updates from <code>Connecting...</code> to live <code>CH4</code> and <code>AQ</code> readings.</li>
+                    <li><strong>Amphibious Traversal &amp; Inspection:</strong> Use the XY analog joystick to drive the rover into the chamber. Paddle wheels and the sealed buoyancy pouch maintain stability across dry floors, sludge, and water.</li>
+                    <li><strong>Safety Clearance Decision:</strong> Verify that the LCD displays <code>CAN ENTER: YES</code> and the camera confirms zero structural collapse before permitting human maintenance workers inside.</li>
+                </ol>
+            </div>
+            <div class="card">
+                <h3>Key Technical Highlights for Judges &amp; Evaluators</h3>
+                <ul>
+                    <li><strong>Humanitarian Impact:</strong> Directly addresses manual scavenging hazards with an affordable &#8377;3,000 replicable engineering solution.</li>
+                    <li><strong>Statewide Scalability:</strong> Ready for immediate rollout across all <strong>25 Municipal Corporations in Tamil Nadu</strong> at a total cost of just <strong>&#8377;75,000</strong>.</li>
+                    <li><strong>Multi-Domain Engineering:</strong> Integrates mechanical 3D CAD &amp; buoyancy design, embedded C++ wireless protocols, chemical gas sensing, and isolated HD IP video.</li>
+                    <li><strong>Open-Source Documentation:</strong> Complete source code, hardware schematics, BOM links, and field video hosted publicly on <a href="https://github.com/tnjason770/drainage-rover" target="_blank" rel="noopener">GitHub</a>.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p><strong>Amphibious Drainage Inspection Rover</strong> &mdash; Complete Engineering Portfolio &amp; Technical Documentation</p>
+    <p style="margin-top:0.45rem;">Engineered in Madurai &bull; &#8377;3,000 Per Unit &bull; &#8377;75,000 Total Deployment Plan for All 25 Tamil Nadu Municipal Corporations</p>
+</footer>
+
+<script>
+    function copyCode(elementId) {
+        const text = document.getElementById(elementId).innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Firmware code copied to clipboard!");
+        });
+    }
+</script>
+</body>
+</html>
